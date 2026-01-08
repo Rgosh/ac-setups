@@ -1,7 +1,14 @@
 [
   {
     "id": "ferrari_458_gt2",
-    "count": 1,
+    "count": 2,
+    "authors": [
+      "AFN PRO"
+    ]
+  },
+  {
+    "id": "lotus_exos_125_s1",
+    "count": 2,
     "authors": [
       "AFN PRO"
     ]
