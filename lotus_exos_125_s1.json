@@ -3,7 +3,7 @@
     "name": "Monza",
     "source": "monza",
     "author": "AFN PRO",
-    "credits": "Refined by AFN PRO | Inspired by community benchmarks",
+    "credits": "Qazdar Karim, Vincent Buccarello, NicksSkillz",
     "car_id": "lotus_exos_125_s1",
     "is_remote": true,
     "fuel": 15,
@@ -47,10 +47,10 @@
     "gears": []
   },
   {
-    "name": "WR-1.24.887",
+    "name": "Monza_2",
     "source": "monza",
     "author": "AFN PRO",
-    "credits": "Refined by AFN PRO | Inspired by community benchmarks",
+    "credits": "",
     "car_id": "lotus_exos_125_s1",
     "is_remote": true,
     "fuel": 14,
