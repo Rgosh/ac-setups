@@ -43,6 +43,11 @@ UNSIGNED = [f for f in REQUIRED_NUMBERS if not f.startswith(("camber", "toe", "r
 
 def main():
     problems = []
+    # Suspicions rather than faults. The unit check below is a heuristic, and a
+    # heuristic must not be what stops someone contributing a setup: it would
+    # have every pull request arrive red over eight entries that were already
+    # here. Printed loudly, not fatal.
+    warnings = []
     files = sorted(
         f for f in os.listdir(ROOT) if f.endswith(".json") and f != "manifest.json"
     )
@@ -137,7 +142,7 @@ def main():
                 offenders = sorted(
                     {s["name"] for s in setups if abs(s.get(field, 0)) == max(values)}
                 )
-                problems.append(
+                warnings.append(
                     "%s.%s mixes units: %d..%d across the file (%s) — one of them "
                     "is not what the .ini stores"
                     % (car, field, min(values), max(values), ", ".join(offenders))
@@ -145,6 +150,12 @@ def main():
 
     for car in listed:
         problems.append("manifest lists %s but there is no %s.json" % (car, car))
+
+    if warnings:
+        print("%d warning(s) — known, not fatal:" % len(warnings))
+        for warning in warnings:
+            print("  " + warning)
+        print()
 
     if problems:
         print("%d problem(s):" % len(problems))
