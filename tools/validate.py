@@ -123,6 +123,26 @@ def main():
                     % (entry.get("authors"), car, authors)
                 )
 
+        # A field that spans a factor of a hundred inside one car is not a
+        # setting choice, it is two different units in one file. The Z4 has
+        # `arb_front` as 3 on one track and 109000 on another: one of those is
+        # the click index Assetto Corsa's .ini actually stores, the other is
+        # the stiffness in N/m that a setup site displays. AC clamps the second
+        # to the stiffest click, so the setup that loads is not the setup the
+        # author drove, and nothing reports it.
+        for field in REQUIRED_NUMBERS:
+            values = [abs(s[field]) for s in setups if isinstance(s.get(field), int)]
+            values = [v for v in values if v > 0]
+            if len(values) > 1 and max(values) > 100 * min(values):
+                offenders = sorted(
+                    {s["name"] for s in setups if abs(s.get(field, 0)) == max(values)}
+                )
+                problems.append(
+                    "%s.%s mixes units: %d..%d across the file (%s) — one of them "
+                    "is not what the .ini stores"
+                    % (car, field, min(values), max(values), ", ".join(offenders))
+                )
+
     for car in listed:
         problems.append("manifest lists %s but there is no %s.json" % (car, car))
 
