@@ -50,3 +50,14 @@ tested is worse than no entry at all, in two places at once.
 
 Credit whoever made the setup in `author`, and whoever it is based on in
 `credits`. If it came from someone else's work, ask them first.
+
+## Sending a setup
+
+Pull requests welcome. Use `tools/import_setup.py` so the field names are right,
+put your own name in `author`, and say in the PR that the setup is yours or that
+you have the author's permission. `tools/validate.py` runs on every pull request.
+
+Setups copied from a site without asking do not go in, even with a credit line —
+and beyond the permission, that route is how the `arb_front: 109000` entries got
+here: a stiffness in N/m copied from a page instead of the click index the game
+reads.

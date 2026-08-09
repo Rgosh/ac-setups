@@ -1,0 +1,17 @@
+name: validate
+
+# The application fetches these files from `main` at runtime, so a broken
+# manifest or a setup with a field in the wrong unit is live the moment it
+# lands. This runs on pull requests as well as pushes, which is what makes it
+# safe to take a setup from someone you do not know.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/validate.py
